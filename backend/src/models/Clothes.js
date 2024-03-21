@@ -10,10 +10,11 @@ const ClothesSchema = new Schema({
   },
   Username: {
     type: String,
-    unique: true,
+    require: true
   },
   ClothName:{
     type: String,
+    require: true
   },
   ClothImage :{
     type: String,
