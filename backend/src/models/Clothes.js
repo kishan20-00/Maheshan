@@ -10,23 +10,23 @@ const ClothesSchema = new Schema({
   },
   Username: {
     type: String,
-    require: true
+    require: true,
   },
   ClothName:{
     type: String,
-    require: true
+    require: true,
   },
   ClothImage :{
     type: String,
-    require: true
+    require: true,
 },
    WearType :{
     type: String,
-    require: true
+    require: true,
    },
    Casualty : {
     type: String,
-    require: true
+    require: true,
 },
 })
 

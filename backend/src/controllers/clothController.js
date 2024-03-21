@@ -3,44 +3,44 @@ const clothDetails = require("../models/Clothes");
 //add new Vehicle for system
 exports.addNewCloth= async (req, res) => {
  
-    //constant variables for the attributes
-    const {
-        ClothID,
-        UserName,
-        ClothName,
-        ClothImage,
-        WearType,
-        Casualty 
-    }= req.body;
-  
-  
-    clothDetails.findOne({ClothID: ClothID})
-      .then((savedCloth) => {
-          if(savedCloth) {
-              return res.status(422).json({error:"Cloth already exists with that no"})
-          }
-  
-          const newCloth = new clothDetails({
-            ClothID,
-            UserName,
-        ClothName,
-        ClothImage,
-        WearType,
-        Casualty 
-        })
-    
-        newCloth.save().then(() => {
-             res.json("Cloth Added")
-    
-        }).catch((err) => {
-          
-        })
-      
-    }).catch((err) =>{
-        
-    })
-    }
+  //constant variables for the attributes
+  const {
+    ClothID,
+    Username,
+    ClothName,
+    ClothImage,
+     WearType,
+     Casualty
+   } = req.body;
 
+
+  clothDetails.findOne({ClothID: ClothID})
+    .then((savedCloth) => {
+        if(savedCloth) {
+            return res.status(422).json({error:"Cloth already exists with that no"})
+        }
+
+        const newCloth = new clothDetails({
+          ClothID,
+          Username,
+      ClothName,
+      ClothImage,
+       WearType,
+       Casualty
+      })
+  
+      newCloth.save().then(() => {
+           res.json("Cloth Details Added")
+  
+      }).catch((err) => {
+        
+      })
+    
+  }).catch((err) =>{
+      
+  })
+  }
+  
 //delete existing one
 exports.deleteCloth = async (req, res) => {
     let clothID = req.params.id;
@@ -57,19 +57,19 @@ exports.deleteCloth = async (req, res) => {
     //fetch id from url
     let id = req.params.id;
     const {
-        UserName,
-        ClothName,
-        ClothImage,
-        WearType,
-        Casualty
+      Username,
+      ClothName,
+      ClothImage,
+       WearType,
+       Casualty
            } = req.body;
   
     const updateCloth = {
-        UserName,
-        ClothName,
-        ClothImage,
-        WearType,
-        Casualty
+      Username,
+      ClothName,
+      ClothImage,
+       WearType,
+       Casualty
         }
   
   
@@ -106,7 +106,7 @@ exports.viewCloths= async (req, res) => {
   }
 
 exports.viewOneClothName = async (req, res) => {
-    const clothName = req.params.name; // Assuming the name is passed as a parameter
+    const clothName = req.params.Username; // Assuming the name is passed as a parameter
 
     try {
         const cloth = await clothDetails.findOne({ name: clothName });

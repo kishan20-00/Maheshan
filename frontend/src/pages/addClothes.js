@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function AddCloth(){
     const [ClothID, setClothID] = useState("");
-    const [UserName, setUserName] = useState("");
+    const [Username, setUserName] = useState("");
     const [ClothName, setClothName] = useState("");
     const [ClothImage, setClothImage] = useState("");
     const [WearType, setWearType] = useState("");
@@ -15,7 +15,7 @@ export default function AddCloth(){
         
         const newCloth = {
             ClothID,
-            UserName,
+            Username,
             ClothName,
             ClothImage,
             WearType,
@@ -23,8 +23,8 @@ export default function AddCloth(){
         }
   
         
-        axios.post("http://localhost:5200/cloth/add", newCloth).then(()=>{
-          alert("Loyalty Details were recorded.");
+        axios.post("http://localhost:4200/cloth/add", newCloth).then(()=>{
+          alert("Cloth Details were recorded.");
         }).catch((err)=>{
             alert(err)
         })
@@ -51,7 +51,7 @@ export default function AddCloth(){
         <Form.Control
           type="text"
           placeholder="Enter Name"
-          name="username"
+          name="user"
           onChange={(e)=>{
             setUserName(e.target.value);
           }}

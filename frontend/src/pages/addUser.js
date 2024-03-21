@@ -21,7 +21,7 @@ export default function Register(){
         }
   
         
-        axios.post("http://localhost:5200/user/add", newUser).then(()=>{
+        axios.post("http://localhost:4200/user/add", newUser).then(()=>{
           alert("User Details were recorded.");
         }).catch((err)=>{
             alert(err)
