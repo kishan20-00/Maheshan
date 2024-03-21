@@ -16,10 +16,6 @@ app.use("/user", userRouter);
 const clothesRouter = require("./routes/clothRoutes.js");
 app.use("/cloth", clothesRouter);
 
-// //store Offers router
-// const storeOfferRouter = require("./routes/storeOffersRoutes.js");
-// app.use("/offer", storeOfferRouter);
-
 // //store Items router
 // const storeItemRouter = require("./routes/storeItemsRoutes.js");
 // app.use("/item", storeItemRouter);
