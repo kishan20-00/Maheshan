@@ -115,3 +115,30 @@ exports.viewOneUserName = async (req, res) => {
         res.status(500).json({ status: "error", message: error.message });
     }
 };
+
+exports.login = async (req, res) => {
+  const { 
+    name, 
+    password } = req.body;
+
+  try {
+      // Find the user by username
+      const user = await userDetails.findOne({ name: name });
+
+      // If user not found, return error
+      if (!user) {
+          return res.status(404).json({ error: "User not found" });
+      }
+
+      // Check if the password matches
+      if (user.password !== password) {
+          return res.status(401).json({ error: "Incorrect password" });
+      }
+
+      // If username and password match, return success
+      res.status(200).json({ status: "success", user });
+  } catch (error) {
+      // Handle any errors that occur during the process
+      res.status(500).json({ error: error.message });
+  }
+};
