@@ -3,7 +3,7 @@ import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios";
 import "./Register.css"; // Import CSS file for styling
 import { useNavigate, Link } from "react-router-dom";
-import backgroundImage from './mall1.jpg';
+import backgroundImage from './clothes12.jpg';
 
 export default function Register() {
     const [name, setName] = useState("");
@@ -37,7 +37,7 @@ export default function Register() {
             className="d-flex flex-column min-vh-100" 
             style={{
                 backgroundImage: `url(${backgroundImage})`, // Set the background image
-                backgroundSize: 'cover',
+                backgroundSize: 'fit',
                 backgroundPosition: 'center',
             }}
         >

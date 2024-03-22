@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
+import backgroundImage from './clothes3.jpg';
 
 function Login() {
     const [name, setName] = useState("");
@@ -24,6 +25,14 @@ function Login() {
     };
 
     return (
+        <div 
+            className="d-flex flex-column min-vh-100" 
+            style={{
+                backgroundImage: `url(${backgroundImage})`, // Set the background image
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}
+        >
         <div className="login-container">
             <div className="login-form">
                 <h2>Login</h2>
@@ -58,6 +67,7 @@ function Login() {
                 </div>
                 </Form>
             </div>
+        </div>
         </div>
     );
 }

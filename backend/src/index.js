@@ -16,9 +16,9 @@ app.use("/user", userRouter);
 const clothesRouter = require("./routes/clothRoutes.js");
 app.use("/cloth", clothesRouter);
 
-// //store Items router
-// const storeItemRouter = require("./routes/storeItemsRoutes.js");
-// app.use("/item", storeItemRouter);
+//store Items router
+const apiRouter = require("./routes/apiRoutes.js");
+app.use("/api", apiRouter);
 
 // //promo code router
 // const promoCodeRouter = require("./routes/promoCodeRouter.js");
