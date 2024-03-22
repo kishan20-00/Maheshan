@@ -5,7 +5,6 @@ exports.addNewCloth= async (req, res) => {
  
     //constant variables for the attributes
     const {
-        ClothID,
         UserName,
         ClothName,
         ClothImage,
@@ -13,15 +12,7 @@ exports.addNewCloth= async (req, res) => {
         Casualty 
     }= req.body;
   
-  
-    clothDetails.findOne({ClothID: ClothID})
-      .then((savedCloth) => {
-          if(savedCloth) {
-              return res.status(422).json({error:"Cloth already exists with that no"})
-          }
-  
           const newCloth = new clothDetails({
-            ClothID,
             UserName,
         ClothName,
         ClothImage,
@@ -36,10 +27,10 @@ exports.addNewCloth= async (req, res) => {
           
         })
       
-    }).catch((err) =>{
+    .catch((err) =>{
         
     })
-    }
+    };
 
 //delete existing one
 exports.deleteCloth = async (req, res) => {

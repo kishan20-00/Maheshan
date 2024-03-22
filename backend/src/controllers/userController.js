@@ -5,22 +5,13 @@ exports.addNewUser= async (req, res) => {
  
     //constant variables for the attributes
     const {
-        userID,
       name,
        email,
        contactNumber,
        password,
      } = req.body;
   
-  
-    userDetails.findOne({userID: userID})
-      .then((savedUser) => {
-          if(savedUser) {
-              return res.status(422).json({error:"User already exists with that no"})
-          }
-  
           const newUser = new userDetails({
-            userID,
             name,
              email,
              contactNumber,
@@ -34,10 +25,10 @@ exports.addNewUser= async (req, res) => {
           
         })
       
-    }).catch((err) =>{
+    .catch((err) =>{
         
     })
-    }
+    };
 
 //delete existing one
 exports.deleteUser = async (req, res) => {

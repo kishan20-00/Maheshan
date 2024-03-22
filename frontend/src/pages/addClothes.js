@@ -1,115 +1,111 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios";
+import "./AddCloth.css"; // Import CSS file for styling
 
-export default function AddCloth(){
-    const [ClothID, setClothID] = useState("");
-    const [UserName, setUserName] = useState("");
-    const [ClothName, setClothName] = useState("");
-    const [ClothImage, setClothImage] = useState("");
-    const [WearType, setWearType] = useState("");
-    const [Casualty, setCasualty] = useState("");
+export default function AddCloth() {
+    const [userName, setUserName] = useState("");
+    const [clothName, setClothName] = useState("");
+    const [clothImage, setClothImage] = useState("");
+    const [wearType, setWearType] = useState("");
+    const [casualty, setCasualty] = useState("");
+
+    const wearTypeOptions = ["Top Wear", "Bottom Wear", "Innerwear"]; // Options for wear type dropdown
+    const casualtyOptions = ["Low", "Medium", "High"]; // Options for casualty dropdown
 
     function sendData(e) {
         e.preventDefault();
-        
+
         const newCloth = {
-            ClothID,
-            UserName,
-            ClothName,
-            ClothImage,
-            WearType,
-            Casualty
-        }
-  
-        
-        axios.post("http://localhost:5200/cloth/add", newCloth).then(()=>{
-          alert("Loyalty Details were recorded.");
-        }).catch((err)=>{
-            alert(err)
-        })
-  
-      }
+            userName,
+            clothName,
+            clothImage,
+            wearType,
+            casualty
+        };
 
+        axios.post("http://localhost:5200/cloth/add", newCloth)
+            .then(() => {
+                alert("Cloth Details were recorded.");
+            })
+            .catch((err) => {
+                alert(err);
+            });
+    }
 
-  return (
-    <Form onSubmit={sendData}>
-      <Form.Group controlId="userID">
-        <Form.Label>Cloth ID</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter User ID"
-          name="userID"
-          onChange={(e)=>{
-            setClothID(e.target.value);
-          }}
-        />
-      </Form.Group>
+    return (
+        <div className="add-cloth-container">
+            <Container>
+                <div className="add-cloth-box">
+                    <h2>Add Cloth</h2>
+                    <Form onSubmit={sendData}>
+                        <Form.Group controlId="userName">
+                            <Form.Label>User Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter User Name"
+                                name="userName"
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                            />
+                        </Form.Group>
 
-      <Form.Group controlId="name">
-        <Form.Label>User Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter Name"
-          name="username"
-          onChange={(e)=>{
-            setUserName(e.target.value);
-          }}
-        />
-      </Form.Group>
+                        <Form.Group controlId="clothName">
+                            <Form.Label>Cloth Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter Cloth Name"
+                                name="clothName"
+                                value={clothName}
+                                onChange={(e) => setClothName(e.target.value)}
+                            />
+                        </Form.Group>
 
-      <Form.Group controlId="price">
-        <Form.Label>Cloth Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter Price"
-          name="price"
-          onChange={(e)=>{
-            setClothName(e.target.value);
-          }}
-        />
-      </Form.Group>
+                        <Form.Group controlId="clothImage">
+                            <Form.Label>Cloth Image</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter Cloth Image URL"
+                                name="clothImage"
+                                value={clothImage}
+                                onChange={(e) => setClothImage(e.target.value)}
+                            />
+                        </Form.Group>
 
-      <Form.Group controlId="image">
-        <Form.Label>Cloth Image</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter Contact Number"
-          name="image"
-          onChange={(e)=>{
-            setClothImage(e.target.value);
-          }}
-        />
-      </Form.Group>
+                        <Form.Group controlId="wearType">
+                            <Form.Label>Wear Type</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={wearType}
+                                onChange={(e) => setWearType(e.target.value)}
+                            >
+                                <option value="">Select Wear Type</option>
+                                {wearTypeOptions.map((option, index) => (
+                                    <option key={index} value={option}>{option}</option>
+                                ))}
+                            </Form.Control>
+                        </Form.Group>
 
-      <Form.Group controlId="Wear">
-        <Form.Label>Wear Type</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter Password"
-          name="wear"
-          onChange={(e)=>{
-            setWearType(e.target.value);
-          }}
-        />
-      </Form.Group>
+                        <Form.Group controlId="casualty">
+                            <Form.Label>Casualty</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={casualty}
+                                onChange={(e) => setCasualty(e.target.value)}
+                            >
+                                <option value="">Select Casualty</option>
+                                {casualtyOptions.map((option, index) => (
+                                    <option key={index} value={option}>{option}</option>
+                                ))}
+                            </Form.Control>
+                        </Form.Group>
 
-      <Form.Group controlId="casualty">
-        <Form.Label>Casualty</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter Password"
-          name="casualty"
-          onChange={(e)=>{
-            setCasualty(e.target.value);
-          }}
-        />
-      </Form.Group>
-
-      <Button variant="primary" type="submit">
-        Add
-      </Button>
-    </Form>
-  );
-};
-
+                        <Button variant="primary" type="submit">
+                            Add
+                        </Button>
+                    </Form>
+                </div>
+            </Container>
+        </div>
+    );
+}
