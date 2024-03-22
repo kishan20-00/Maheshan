@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
-import backgroundImage from './mall.jpg';
+import backgroundImage from './clothes.jpg';
 import "./home.css";
 
 function HomePage() {
@@ -23,12 +23,14 @@ function HomePage() {
                 {/* Header */}
                 <Navbar bg="dark" variant="dark">
                     <Container>
-                        <Navbar.Brand href="/">Mega Mall</Navbar.Brand>
+                        <Navbar.Brand href="/home">Clothify</Navbar.Brand>
                         <Nav className="mr-auto">
                             <Nav.Link as={Link} to="/home">Home</Nav.Link>
                             <Nav.Link as={Link} to="/viewcloth">Cloths</Nav.Link>
                             <Nav.Link as={Link} to="/addcloth">Add Cloths</Nav.Link>
                             <Nav.Link as={Link} to="/viewuser">All Users</Nav.Link>
+                            <Nav.Link as={Link} to="/image">Cloth Fit</Nav.Link>
+                            <Nav.Link as={Link} to="/daily">Daily Wear</Nav.Link>
                         </Nav>
                         <Button variant="outline-light" onClick={handleLogout}>Sign out</Button>
                     </Container>

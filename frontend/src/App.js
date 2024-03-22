@@ -5,6 +5,8 @@ import AddCloth from "./pages/addClothes";
 import ViewClothes from "./pages/AllClothes";
 import Login from "./pages/login";
 import HomePage from "./pages/home";
+import ImageUploader from "./pages/ImageUploader";
+import DailyWear from "./pages/WearSelection";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
       <Route path="/addcloth" element={<AddCloth />} />
       <Route path="/viewcloth" element={<ViewClothes />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path="/image" element={<ImageUploader />} />
+      <Route path="/daily" element={<DailyWear />} />
 
       </Routes>
       </BrowserRouter>
