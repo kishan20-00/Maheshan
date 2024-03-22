@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Form } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import ListGroup from "react-bootstrap/ListGroup";
+import { Button, Modal, Form, Card, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
-function ViewClothes() {
+export default function ViewClothes() {
     const [values, setValues] = useState([]);
-
-    const [UserName, setUserName] = useState("");
-    const [ClothName, setCloth] = useState("");
+    const [Username, setUserName] = useState("");
+    const [ClothName, setClothName] = useState("");
     const [ClothImage, setClothImage] = useState("");
     const [WearType, setWearType] = useState("");
     const [Casualty, setCasualty] = useState("");
-
     const [clothes, setClothes] = useState([]);
     const [show, setShow] = useState(false);
 
@@ -46,7 +41,7 @@ function ViewClothes() {
 
         const updatedValues = {
             id: values._id,
-            UserName: UserName || values.UserName,
+            Username: Username || values.Username,
             ClothName: ClothName || values.ClothName,
             ClothImage: ClothImage || values.ClothImage,
             WearType: WearType || values.WearType,
@@ -66,61 +61,62 @@ function ViewClothes() {
     return (
         <div>
             <h1>All Cloth Details</h1>
-            {clothes.map((val, key) => (
-                <div key={key} className="clothes">
-                    <ListGroup key={key} horizontal className="my-2">
-                        <ListGroup.Item>{val._id}</ListGroup.Item>
-                        <ListGroup.Item>{val.UserName}</ListGroup.Item>
-                        <ListGroup.Item>{val.ClothName}</ListGroup.Item>
-                        <ListGroup.Item>{val.ClothImage}</ListGroup.Item>
-                        <ListGroup.Item>{val.WearType}</ListGroup.Item>
-                        <ListGroup.Item>{val.Casualty}</ListGroup.Item>
-                    </ListGroup>
+            <Row xs={1} md={2} lg={3} className="g-4">
+                {clothes.map((val, key) => (
+                    <Col key={key}>
+                        <Card className="h-100">
+                            <Card.Img variant="top" src={val.ClothImage} style={{ objectFit: 'cover', height: '200px' }} />
+                            <Card.Body>
+                                <Card.Title>{val.ClothName}</Card.Title>
+                                <Card.Text>
+                                    <strong>User Name:</strong> {val.Username}<br />
+                                    <strong>Wear Type:</strong> {val.WearType}<br />
+                                    <strong>Casualty:</strong> {val.Casualty}
+                                </Card.Text>
+                                <Button variant="primary" onClick={() => updateClothDetails(val)}>Update</Button>
+                                <Button variant="danger" onClick={() => deleteClothes(val._id)} className="ml-2">Delete</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
 
-                    <Button variant="primary" onClick={() => updateClothDetails(val)} className="uppay">Update</Button>
-                    <Button className="delpay" onClick={() => deleteClothes(val._id)}>Delete</Button>
+            <Modal show={show} onHide={handleClose} className="getfunc">
+                <Modal.Header closeButton>
+                    <Modal.Title>Update Details</Modal.Title>
+                </Modal.Header>
 
-                    <Modal show={show} onHide={handleClose} className="getfunc">
-                        <Modal.Header closeButton>
-                            <Modal.Title>Update Details</Modal.Title>
-                        </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={sendData}>
+                        <Form.Group controlId="name">
+                            <Form.Label>User Name</Form.Label>
+                            <Form.Control type="text" defaultValue={values.Username} onChange={(e) => setUserName(e.target.value)} required />
+                        </Form.Group>
 
-                        <Modal.Body>
-                            <Form onSubmit={sendData}>
-                                <Form.Group controlId="name">
-                                    <Form.Label>User Name</Form.Label>
-                                    <Form.Control type="text" defaultValue={values.name} onChange={(e) => setUserName(e.target.value)} required />
-                                </Form.Group>
+                        <Form.Group controlId="clothName">
+                            <Form.Label>Cloth Name</Form.Label>
+                            <Form.Control type="text" defaultValue={values.ClothName} onChange={(e) => setClothName(e.target.value)} required />
+                        </Form.Group>
 
-                                <Form.Group controlId="email">
-                                    <Form.Label>Cloth Name</Form.Label>
-                                    <Form.Control type="text" defaultValue={values.email} onChange={(e) => setCloth(e.target.value)} required />
-                                </Form.Group>
+                        <Form.Group controlId="clothImage">
+                            <Form.Label>Cloth Image</Form.Label>
+                            <Form.Control type="text" defaultValue={values.ClothImage} onChange={(e) => setClothImage(e.target.value)} required />
+                        </Form.Group>
 
-                                <Form.Group controlId="contactNumber">
-                                    <Form.Label>Cloth Image</Form.Label>
-                                    <Form.Control type="text" defaultValue={values.contactNumber} onChange={(e) => setClothImage(e.target.value)} required />
-                                </Form.Group>
+                        <Form.Group controlId="wearType">
+                            <Form.Label>Wear Type</Form.Label>
+                            <Form.Control type="text" defaultValue={values.WearType} onChange={(e) => setWearType(e.target.value)} required />
+                        </Form.Group>
 
-                                <Form.Group controlId="password">
-                                    <Form.Label>Wear Type</Form.Label>
-                                    <Form.Control type="text" defaultValue={values.password} onChange={(e) => setWearType(e.target.value)} required />
-                                </Form.Group>
+                        <Form.Group controlId="casualty">
+                            <Form.Label>Casualty</Form.Label>
+                            <Form.Control type="text" defaultValue={values.Casualty} onChange={(e) => setCasualty(e.target.value)} required />
+                        </Form.Group>
 
-                                <Form.Group controlId="password">
-                                    <Form.Label>Casualty</Form.Label>
-                                    <Form.Control type="text" defaultValue={values.password} onChange={(e) => setCasualty(e.target.value)} required />
-                                </Form.Group>
-
-                                <Button className="finalpay" type="submit">Edit details</Button>
-                            </Form>
-                        </Modal.Body>
-                    </Modal>
-                    <br />
-                </div>
-            ))}
+                        <Button className="finalpay" type="submit">Edit details</Button>
+                    </Form>
+                </Modal.Body>
+            </Modal>
         </div>
-    );
-};
-
-export default ViewClothes;
+    )
+                };
