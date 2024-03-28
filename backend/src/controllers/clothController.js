@@ -5,7 +5,7 @@ exports.addNewCloth= async (req, res) => {
  
     //constant variables for the attributes
     const {
-        UserName,
+        Username,
         ClothName,
         ClothImage,
         WearType,
@@ -13,7 +13,7 @@ exports.addNewCloth= async (req, res) => {
     }= req.body;
   
           const newCloth = new clothDetails({
-            UserName,
+            Username,
         ClothName,
         ClothImage,
         WearType,
@@ -48,7 +48,7 @@ exports.deleteCloth = async (req, res) => {
     //fetch id from url
     let id = req.params.id;
     const {
-        UserName,
+        Username,
         ClothName,
         ClothImage,
         WearType,
@@ -56,7 +56,7 @@ exports.deleteCloth = async (req, res) => {
            } = req.body;
   
     const updateCloth = {
-        UserName,
+        Username,
         ClothName,
         ClothImage,
         WearType,

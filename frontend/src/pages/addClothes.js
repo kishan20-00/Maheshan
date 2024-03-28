@@ -4,11 +4,11 @@ import axios from "axios";
 import "./AddCloth.css"; // Import CSS file for styling
 
 export default function AddCloth() {
-    const [userName, setUserName] = useState("");
-    const [clothName, setClothName] = useState("");
-    const [clothImage, setClothImage] = useState("");
-    const [wearType, setWearType] = useState("");
-    const [casualty, setCasualty] = useState("");
+    const [Username, setUserName] = useState("");
+    const [ClothName, setClothName] = useState("");
+    const [ClothImage, setClothImage] = useState("");
+    const [WearType, setWearType] = useState("");
+    const [Casualty, setCasualty] = useState("");
 
     const wearTypeOptions = ["Top Wear", "Bottom Wear", "Innerwear"]; // Options for wear type dropdown
     const casualtyOptions = ["Low", "Medium", "High"]; // Options for casualty dropdown
@@ -17,11 +17,11 @@ export default function AddCloth() {
         e.preventDefault();
 
         const newCloth = {
-            userName,
-            clothName,
-            clothImage,
-            wearType,
-            casualty
+            Username,
+            ClothName,
+            ClothImage,
+            WearType,
+            Casualty
         };
 
         axios.post("http://localhost:5200/cloth/add", newCloth)
@@ -45,7 +45,7 @@ export default function AddCloth() {
                                 type="text"
                                 placeholder="Enter User Name"
                                 name="userName"
-                                value={userName}
+                                value={Username}
                                 onChange={(e) => setUserName(e.target.value)}
                             />
                         </Form.Group>
@@ -56,7 +56,7 @@ export default function AddCloth() {
                                 type="text"
                                 placeholder="Enter Cloth Name"
                                 name="clothName"
-                                value={clothName}
+                                value={ClothName}
                                 onChange={(e) => setClothName(e.target.value)}
                             />
                         </Form.Group>
@@ -67,7 +67,7 @@ export default function AddCloth() {
                                 type="text"
                                 placeholder="Enter Cloth Image URL"
                                 name="clothImage"
-                                value={clothImage}
+                                value={ClothImage}
                                 onChange={(e) => setClothImage(e.target.value)}
                             />
                         </Form.Group>
@@ -76,7 +76,7 @@ export default function AddCloth() {
                             <Form.Label>Wear Type</Form.Label>
                             <Form.Control
                                 as="select"
-                                value={wearType}
+                                value={WearType}
                                 onChange={(e) => setWearType(e.target.value)}
                             >
                                 <option value="">Select Wear Type</option>
@@ -90,7 +90,7 @@ export default function AddCloth() {
                             <Form.Label>Casualty</Form.Label>
                             <Form.Control
                                 as="select"
-                                value={casualty}
+                                value={Casualty}
                                 onChange={(e) => setCasualty(e.target.value)}
                             >
                                 <option value="">Select Casualty</option>
